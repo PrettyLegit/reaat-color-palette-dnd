@@ -13,7 +13,7 @@ type PaletteProps = {
 export default function Palette({ palette }: PaletteProps) {
   return (
     <div className="h-screen">
-      <div className="h-11/12">
+      <div className="h-5/6">
         {palette.colors.map((color) => (
           <ColorBox
             key={color.name}
