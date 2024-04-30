@@ -1,3 +1,6 @@
+"use client";
+import { useCallback } from "react";
+
 export default function ColorBox({
   name,
   background,
@@ -5,8 +8,13 @@ export default function ColorBox({
   name: string;
   background: string;
 }) {
+  const handleCopy = useCallback(() => {
+    navigator.clipboard.writeText(background);
+  }, [background]);
+
   return (
     <div
+      onClick={handleCopy}
       className="group relative mx-auto my-0 -mb-2 inline-block h-1/4 w-1/5 cursor-pointer"
       style={{ backgroundColor: background }}
     >
