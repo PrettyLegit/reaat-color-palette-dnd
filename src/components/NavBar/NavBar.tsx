@@ -4,6 +4,9 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css"; // import first
 import { useState } from "react";
 import "./NavBar.scss";
+import { Snackbar } from "@mui/material";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 function NavBar({
   level,
@@ -12,17 +15,15 @@ function NavBar({
 }: {
   level: number;
   changeLevel: (level: number | number[]) => void;
-  changeFormat: (
-    value: string,
-  ) => void;
+  changeFormat: (value: string) => void;
 }) {
   const [format, setFormat] = useState("hex" as string);
+  const [isOpen, setIsOpen] = useState(false);
 
-  function handleChange(
-    event: SelectChangeEvent<string>,
-  ): void {
+  function handleFormatChange(event: SelectChangeEvent<string>): void {
     setFormat(event.target.value);
     changeFormat(event.target.value);
+    setIsOpen(true);
   }
 
   return (
@@ -44,15 +45,36 @@ function NavBar({
       </div>
       <div className="select-container">
         <Select
-          //   native
           value={format}
-          onChange={handleChange}
+          onChange={handleFormatChange}
         >
           <MenuItem value="hex">HEX - #ffffff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255, 255, 255)</MenuItem>
           <MenuItem value="rgba">RGBA - rgba(255, 255, 255, 1.0)</MenuItem>
         </Select>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        open={isOpen}
+        autoHideDuration={3000}
+        message={
+          <span id="message-id">Format Changed to {format.toUpperCase()}</span>
+        }
+        ContentProps={{
+          "aria-describedby": "message-id",
+        }}
+        onClose={() => setIsOpen(false)}
+        action={[
+          <IconButton
+            onClick={() => setIsOpen(false)}
+            color="inherit"
+            key="close"
+            aria-label="close"
+          >
+            <CloseIcon />
+          </IconButton>,
+        ]}
+      />
     </header>
   );
 }
