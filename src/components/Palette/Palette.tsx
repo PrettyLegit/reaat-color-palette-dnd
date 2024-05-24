@@ -1,10 +1,9 @@
 "use client";
-import "rc-slider/assets/index.css"; // import first
 import "./Palette.scss";
 import ColorBox from "../ColorBox/ColorBox";
-import Slider, { Range } from "rc-slider";
 
 import { useState } from "react";
+import NavBar from "../NavBar/NavBar";
 
 type PaletteProps = {
   palette: {
@@ -36,15 +35,7 @@ export default function Palette({ palette }: PaletteProps) {
 
   return (
     <div className="palette">
-      <div className="slider">
-        <Slider
-          defaultValue={level}
-          min={100}
-          max={900}
-          step={100}
-          onChange={changeLevel}
-        />
-      </div>
+      <NavBar level={level} changeLevel={changeLevel} />
 
       <div className="palette-colors">
         {colorsArr[level].map((color) => (
