@@ -10,6 +10,7 @@ type PaletteProps = {
     paletteName: string;
     id: string;
     colors: Colors;
+    emoji: string;
   };
 };
 
@@ -48,12 +49,17 @@ export default function Palette({ palette }: PaletteProps) {
       <div className="palette-colors">
         {colorsArr[level].map((color) => (
           <ColorBox
-            key={color.name}
+            key={color.id}
             name={color.name}
             background={color[format as keyof Color]}
           />
         ))}
       </div>
+
+      <footer className="palette-footer">
+        {palette.paletteName}
+        <span className="emoji">{palette.emoji}</span>
+      </footer>
     </div>
   );
 }
