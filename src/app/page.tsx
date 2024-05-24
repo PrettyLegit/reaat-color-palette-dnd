@@ -6,7 +6,7 @@ import { generatePalette } from "@/util/colorHelper";
 export default function Home() {
   return (
     <main>
-      <Paleltte palette={colorPalette[5]} />
+      <Paleltte palette={generatePalette(colorPalette[4])} />
     </main>
   );
 }
