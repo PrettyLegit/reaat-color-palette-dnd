@@ -1,4 +1,5 @@
-import ColorBox from "./ColorBox";
+import "./Palette.scss";
+import ColorBox from "../ColorBox/ColorBox";
 
 type PaletteProps = {
   palette: {
@@ -12,8 +13,8 @@ type PaletteProps = {
 };
 export default function Palette({ palette }: PaletteProps) {
   return (
-    <div className="h-screen">
-      <div className="h-5/6">
+    <div className="palette">
+      <div className="palette-colors">
         {palette.colors.map((color) => (
           <ColorBox
             key={color.name}

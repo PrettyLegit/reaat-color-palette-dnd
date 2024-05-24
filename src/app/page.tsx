@@ -1,4 +1,4 @@
-import Paleltte from "@/components/Palette";
+import Paleltte from "@/components/Palette/Palette";
 
 import colorPalette from "@/util/seedPalettes";
 
